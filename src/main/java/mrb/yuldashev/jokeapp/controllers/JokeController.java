@@ -1,9 +1,11 @@
 package mrb.yuldashev.jokeapp.controllers;
 
 import mrb.yuldashev.jokeapp.services.JokeService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
 public class JokeController {
     private final JokeService jokeService;
 
@@ -13,9 +15,9 @@ public class JokeController {
 
     @RequestMapping({"/", ""})
     public String showJoke(Model model){
-
-        model.addAttribute("joke", jokeService.getJoke());
-
+        String joke = jokeService.getJoke();
+        System.out.println(joke);
+        model.addAttribute("joke", joke);
         return "index";
     }
 }
